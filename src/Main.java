@@ -1,26 +1,21 @@
-/**
- * Головний клас програми, що демонструє роботу з декораторами.
- * У цьому прикладі створюється текстовий компонент, який потім форматують і фільтрують за допомогою декораторів.
- */
 public class Main {
 
-    /**
-     * Точка входу в програму.
-     * Створюється текстовий компонент, що обгортається двома декораторами:
-     * перший додає форматування, другий виконує фільтрацію тексту.
-     */
     public static void main(String[] args) {
 
-        // Створюємо базовий компонент з текстом
-        Component msg = new ConcreteComponent("Плохое слово это абц");
+        Component msg = new ConcreteComponent("Це просте повыдемлення");
 
-        // Обгортаємо компонент у декоратор, який додає префікс "User: "
-        Component formattedMessage = new ConcreteDecoratorA(msg);
+        Component CypheredMessage = new ConcreteDecoratorCypher(msg);
 
-        // Обгортаємо вже відформатований компонент у декоратор, що фільтрує текст
-        Component filteredAndFormattedMessage = new ConcreteDecoratorB(formattedMessage);
+        Component CompressedCypheredMessage = new ConcreteDecoratorCompress(CypheredMessage);
 
-        // Виводимо відформатований і відфільтрований текст
-        System.out.println(filteredAndFormattedMessage.getText());
+        Component TimeCompressedCypheredMessage = new ConcreteDecoratorTime(CompressedCypheredMessage);
+
+        Component NameTimeCompressedCypheredMessage = new ConcreteDecoratorName(TimeCompressedCypheredMessage);
+
+        System.out.println(msg.getText());
+        System.out.println(CypheredMessage.getText());
+        System.out.println(CompressedCypheredMessage.getText());
+        System.out.println(TimeCompressedCypheredMessage.getText());
+        System.out.println(NameTimeCompressedCypheredMessage.getText());
     }
 }

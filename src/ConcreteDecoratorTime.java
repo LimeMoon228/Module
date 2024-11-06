@@ -1,4 +1,12 @@
-package PACKAGE_NAME;
+public class ConcreteDecoratorTime extends Decorator {
+    public ConcreteDecoratorTime(Component message) {
 
-public class ConcreteDecoratorTime {
+        super(message);
+    }
+
+    @Override
+    public String getText() {
+
+        return "Time: 11:00 " + super.getText();
+    }
 }
